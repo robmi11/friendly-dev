@@ -18,3 +18,10 @@ body {
 .header-2 {
   @apply text-3xl text-white font-bold text-center mb-8;
 }
+
+.base {
+  @apply transition hover:text-blue-500 hover:font-semibold;
+}
+.active {
+  @apply text-gray-200 font-semibold pb-1 border-b-2;
+}

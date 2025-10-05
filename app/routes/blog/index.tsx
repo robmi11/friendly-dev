@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
 export default function BlogPage() {
   return (
     <section>
-      <h2 className="header-2">Blog Posts</h2>
+      <h2 className="header-2">📝 Blog Posts</h2>
     </section>
   );
 }
