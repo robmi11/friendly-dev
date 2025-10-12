@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "dev": "react-router dev --host",
+    "dev": "concurrently \"yarn run client\" \"yarn run server\" ",
+    "client": "react-router dev --host",
+    "server": "npx json-server ./db/db.json --port 5000",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc"
   },
@@ -23,6 +25,8 @@
     "@types/node": "^22",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
+    "concurrently": "^9.2.1",
+    "json-server": "^1.0.0-beta.3",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
     "vite": "^7.1.7",

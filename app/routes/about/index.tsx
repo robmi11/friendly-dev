@@ -6,8 +6,8 @@ export function meta({}: Route.MetaArgs) {
 
 export default function AboutPage() {
   return (
-    <section>
+    <>
       <h2 className="header-2">Hi I'm Robert 👋</h2>
-    </section>
+    </>
   );
 }

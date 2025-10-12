@@ -6,9 +6,9 @@ export function meta({}: Route.MetaArgs) {
 
 function ContactPage() {
   return (
-    <section>
+    <>
       <h2 className="header-2">📬 Contact Me</h2>
-    </section>
+    </>
   );
 }
 export default ContactPage;

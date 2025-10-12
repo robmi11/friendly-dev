@@ -6,8 +6,8 @@ export function meta({}: Route.MetaArgs) {
 
 export default function ProjectsPage() {
   return (
-    <section>
+    <>
       <h2 className="header-2">🚀 Projects Display</h2>
-    </section>
+    </>
   );
 }
