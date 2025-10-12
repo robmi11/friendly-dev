@@ -19,3 +19,8 @@ export type HeroProps = {
   name?: string;
   text?: string;
 };
+
+export type FeaturedProjectsProps = {
+  featuredProjects: Project[];
+  count?: number;
+};

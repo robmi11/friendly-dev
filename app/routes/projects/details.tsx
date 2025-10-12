@@ -1,7 +1,7 @@
 import type { Project } from "~/types/types";
 import type { Route } from "./+types/details";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export function meta({ params }: Route.MetaArgs) {
   return [{ title: `The Friendly Dev | ${params.id}` }];
@@ -26,14 +26,15 @@ export default function ProjectDetailsPage({
   loaderData,
 }: Route.ComponentProps) {
   const project: Project = loaderData;
+  const navigate = useNavigate();
 
   return (
     <>
-      <Link
-        className="flex items-center text-blue-400 mb-6 transition hover:text-blue-500"
-        to="/projects">
-        <FaArrowLeft className="mr-2" /> Back To Projects
-      </Link>
+      <button
+        className="flex items-center text-blue-400 mb-6 transition hover:text-blue-500 cursor-pointer"
+        onClick={() => navigate(-1)}>
+        <FaArrowLeft className="mr-2" /> Go Back
+      </button>
 
       <div className="grid gap-8 items-start md:grid-cols-2">
         <div>

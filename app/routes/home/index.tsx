@@ -1,5 +1,6 @@
+import FeaturedProjects from "~/components/FeaturedProjects";
 import type { Route } from "./+types/index";
-import Hero from "~/components/Hero";
+import type { Project } from "~/types/types";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,11 +9,26 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Home() {
+export async function loader({
+  request,
+  params,
+}: Route.LoaderArgs): Promise<{ projects: Project[] }> {
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/projects?featured=true`
+  );
+
+  if (!response.ok) throw new Response("No featured projects", { status: 500 });
+
+  const data = await response.json();
+
+  return { projects: data };
+}
+
+export default function Home({ loaderData }: Route.ComponentProps) {
+  const { projects } = loaderData;
   return (
     <>
-      <Hero />
-      <h1 className="mt-4">This is a Home Page of the site.</h1>
+      <FeaturedProjects featuredProjects={projects} />
     </>
   );
 }
