@@ -1,4 +1,5 @@
 import FeaturedProjects from "~/components/FeaturedProjects";
+import AboutPreview from "~/components/AboutPreview";
 import type { Route } from "./+types/index";
 import type { Project } from "~/types/types";
 
@@ -29,6 +30,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <FeaturedProjects featuredProjects={projects} />
+      <AboutPreview />
     </>
   );
 }
