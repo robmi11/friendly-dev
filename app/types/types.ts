@@ -5,7 +5,7 @@ export type Project = {
   image: string;
   url: string;
   date: string;
-  category: "Fullstack" | "Frontend";
+  category: "Fullstack" | "Frontend" | "Mobile";
   featured: boolean;
 };
 

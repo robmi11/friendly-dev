@@ -11,7 +11,9 @@ export async function loader({
   request,
   params,
 }: Route.LoaderArgs): Promise<Project> {
-  const response = await fetch(`http://localhost:5000/projects/${params.id}`);
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/projects/${params.id}`
+  );
 
   if (!response.ok) throw new Response("Project not found", { status: 404 });
 
