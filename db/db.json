@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "id": 1,
+      "id": "1",
       "title": "DevDash",
       "description": "A productivity dashboard for developers to track tasks, goals, and inspiration.",
       "image": "/images/project-1.png",
@@ -11,7 +11,7 @@
       "featured": false
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "SnapFeed",
       "description": "A photo-sharing app with uploads, a feed, and social features.",
       "image": "/images/project-2.png",
@@ -21,7 +21,7 @@
       "featured": true
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "NoteNest",
       "description": "A note-taking app with categories and local storage support.",
       "image": "/images/project-3.png",
@@ -31,7 +31,7 @@
       "featured": true
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "FitTrack",
       "description": "A fitness tracker that logs workouts and progress visually.",
       "image": "/images/project-4.png",
@@ -41,7 +41,7 @@
       "featured": false
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "CodeCritic",
       "description": "A code snippet review tool with comments and upvotes.",
       "image": "/images/project-5.png",
@@ -51,7 +51,7 @@
       "featured": false
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "InspoQuote",
       "description": "A daily inspiration quote generator with save/share options.",
       "image": "/images/project-6.png",
@@ -61,7 +61,7 @@
       "featured": false
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Blogify",
       "description": "A minimalist blogging platform with Markdown and comments.",
       "image": "/images/project-7.png",
@@ -69,6 +69,22 @@
       "date": "2024-09-01",
       "category": "Fullstack",
       "featured": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "efae",
+      "name": "Robert Mizianty",
+      "email": "robert@mizianty.com",
+      "subject": "Company Site",
+      "message": "Lorem ipsum dolr int."
+    },
+    {
+      "id": "0297",
+      "name": "",
+      "email": "",
+      "subject": "",
+      "message": ""
     }
   ]
 }
