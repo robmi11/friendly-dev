@@ -9,6 +9,14 @@ export type Project = {
   featured: boolean;
 };
 
+export type PostMeta = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+};
+
 export type PaginationProps = {
   totalPages: number;
   currentPage: number;

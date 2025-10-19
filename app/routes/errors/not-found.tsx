@@ -1,6 +1,7 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function NotFoundPage() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] px-6 text-center">
       <h1 className="text-6xl font-extrabold text-blue-400 mb-2">404</h1>
@@ -10,11 +11,11 @@ export default function NotFoundPage() {
       <p className="text-gray-400">
         Sorry, the page you are looking for does not exist.
       </p>
-      <Link
-        to="/"
-        className="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition mt-5">
+      <button
+        onClick={() => navigate(-1)}
+        className="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition mt-5 cursor-pointer">
         Go Home
-      </Link>
+      </button>
     </div>
   );
 }
