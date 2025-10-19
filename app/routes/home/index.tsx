@@ -19,23 +19,38 @@ export async function loader({
   const url = new URL(request.url);
 
   const [projectsRes, postsRes] = await Promise.all([
-    fetch(`${import.meta.env.VITE_API_URL}/projects?featured=true`),
+    fetch(`${import.meta.env.VITE_API_URL}/projects?featured=true&populate=*`),
     fetch(new URL("posts-meta.json", url)),
   ]);
 
   if (!projectsRes.ok || !postsRes.ok)
     throw new Error("Failed to fetch projects or posts");
 
-  const [projects, posts] = await Promise.all([
+  const [projData, postsData] = await Promise.all([
     projectsRes.json(),
     postsRes.json(),
   ]);
 
-  return { projects, posts };
+  const projects = projData.data.map((item) => ({
+    id: item.id,
+    documentId: item.documentId,
+    title: item.title,
+    description: item.description,
+    image: item.image?.url
+      ? `${import.meta.env.VITE_STRAPI_URL}${item.image.url}`
+      : "/images/no-image.png",
+    url: item.url,
+    category: item.category,
+    date: item.date,
+    featured: item.featured,
+  }));
+
+  return { projects, posts: postsData };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { projects, posts } = loaderData;
+
   return (
     <>
       <FeaturedProjects featuredProjects={projects} />

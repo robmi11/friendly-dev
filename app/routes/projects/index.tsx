@@ -13,13 +13,30 @@ export async function loader({
   request,
   params,
 }: Route.LoaderArgs): Promise<{ projects: Project[] }> {
-  const response = await fetch(`${import.meta.env.VITE_API_URL}/projects`);
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/projects?populate=*`
+  );
 
   if (!response.ok)
     throw new Response("Could not load the projects", { status: 500 });
 
-  const data: Project[] = await response.json();
-  return { projects: data };
+  const json = await response.json();
+
+  const projects = json.data.map((item: any) => ({
+    id: item.id,
+    documentId: item.documentId,
+    title: item.title,
+    description: item.description,
+    image: item.image?.url
+      ? `${import.meta.env.VITE_STRAPI_URL}${item.image.url}`
+      : "/images/no-image.png",
+    url: item.url,
+    category: item.category,
+    date: item.date,
+    featured: item.featured,
+  }));
+
+  return { projects };
 }
 
 export default function ProjectsPage({ loaderData }: Route.ComponentProps) {
@@ -27,7 +44,7 @@ export default function ProjectsPage({ loaderData }: Route.ComponentProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 10;
 
-  const { projects } = loaderData as { projects: Project[] };
+  const { projects } = loaderData;
 
   // Get unique categories
   const categories: string[] = [

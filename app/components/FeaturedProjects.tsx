@@ -3,13 +3,14 @@ import ProjectCard from "./ProjectCard";
 
 export default function FeaturedProjects({
   featuredProjects,
-  count = 4,
+  count = 2,
 }: FeaturedProjectsProps) {
+  const projetcs = featuredProjects.filter((item) => item.featured === true);
   return (
     <section>
       <h2 className="header-2">🌟 Featured Projects</h2>
       <div className="grid gap-6 md:grid-cols-2">
-        {featuredProjects.slice(0, count).map((project) => (
+        {projetcs.slice(0, count).map((project) => (
           <ProjectCard
             key={project.id}
             project={project}

@@ -1,11 +1,12 @@
 export type Project = {
-  id: number;
+  id: string;
+  documentId: string;
   title: string;
   description: string;
   image: string;
   url: string;
   date: string;
-  category: "Fullstack" | "Frontend" | "Mobile";
+  category: "Fullstack" | "Frontend" | "Mobile" | "Backend";
   featured: boolean;
 };
 
