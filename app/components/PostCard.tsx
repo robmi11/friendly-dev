@@ -3,9 +3,7 @@ import type { PostMeta } from "~/types/types";
 
 export default function PostCard({ post }: { post: PostMeta }) {
   return (
-    <article
-      key={post.id}
-      className="bg-gray-800 p-6 rounded-lg shadow mb-4">
+    <article className="bg-gray-800 p-6 rounded-lg shadow mb-4">
       <h3 className="text-2xl font-semibold text-blue-400">{post.title}</h3>
       <p className="text-sm text-gray-400 mb-2">
         {new Date(post.date).toLocaleDateString()}
