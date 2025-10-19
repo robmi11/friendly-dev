@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProjectCard from "~/components/ProjectCard";
 import type { Route } from "./+types/index";
-import type { Project } from "~/types/types";
+import type { Project, StrapiProject, StrapiResponse } from "~/types/types";
 import Pagination from "~/components/Pagination";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -20,9 +20,9 @@ export async function loader({
   if (!response.ok)
     throw new Response("Could not load the projects", { status: 500 });
 
-  const json = await response.json();
+  const json: StrapiResponse<StrapiProject> = await response.json();
 
-  const projects = json.data.map((item: any) => ({
+  const projects = json.data.map((item) => ({
     id: item.id,
     documentId: item.documentId,
     title: item.title,

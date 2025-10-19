@@ -43,3 +43,9 @@ export type LatestProjectsProps = {
   posts: PostMeta[];
   limit?: number;
 };
+
+export type StrapiResponse<T> = {
+  data: T[];
+};
+
+export type StrapiProject = Project & { image?: { url: string; formats?: { thumbnail?: { url: string; }; small?: { url: string; }; medium?: { url: string; }; tlarge?: { url: string; }; }; }; };

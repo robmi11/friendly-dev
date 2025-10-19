@@ -2,7 +2,7 @@ import FeaturedProjects from "~/components/FeaturedProjects";
 import AboutPreview from "~/components/AboutPreview";
 import LatestPosts from "~/components/LatestPosts";
 import type { Route } from "./+types/index";
-import type { Project } from "~/types/types";
+import type { Project, StrapiResponse, StrapiProject } from "~/types/types";
 import type { PostMeta } from "~/types/types";
 
 export function meta({}: Route.MetaArgs) {

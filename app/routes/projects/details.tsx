@@ -1,23 +1,36 @@
-import type { Project } from "~/types/types";
+import type { Project, StrapiProject, StrapiResponse } from "~/types/types";
 import type { Route } from "./+types/details";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 
 export function meta({ params }: Route.MetaArgs) {
-  return [{ title: `The Friendly Dev | ${params.id}` }];
+  return [{ title: `The Friendly Dev | ${params.documentId}` }];
 }
 
-export async function loader({
-  request,
-  params,
-}: Route.LoaderArgs): Promise<Project> {
+export async function loader({ request, params }: Route.LoaderArgs) {
   const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/projects/${params.id}`
+    `${import.meta.env.VITE_API_URL}/projects?filters[documentId][$eq]=${params.documentId}&populate=*`
   );
 
   if (!response.ok) throw new Response("Project not found", { status: 404 });
 
-  const project: Project = await response.json();
+  const json: StrapiResponse<StrapiProject> = await response.json();
+
+  const item: StrapiProject = json.data[0];
+
+  const project = {
+    id: item.id,
+    documentId: item.documentId,
+    title: item.title,
+    description: item.description,
+    image: item.image?.url
+      ? `${import.meta.env.VITE_STRAPI_URL}${item.image.url}`
+      : "/images/no-image.png",
+    url: item.url,
+    category: item.category,
+    date: item.date,
+    featured: item.featured,
+  };
 
   return project;
 }
@@ -25,7 +38,7 @@ export async function loader({
 export default function ProjectDetailsPage({
   loaderData,
 }: Route.ComponentProps) {
-  const project: Project = loaderData;
+  const project = loaderData;
   const navigate = useNavigate();
 
   return (
