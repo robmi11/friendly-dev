@@ -19,19 +19,20 @@ export async function loader({
   const url = new URL(request.url);
 
   const [projectsRes, postsRes] = await Promise.all([
-    fetch(`${import.meta.env.VITE_API_URL}/projects?featured=true&populate=*`),
+    fetch(
+      `${import.meta.env.VITE_API_URL}/projects?filters[featured][$eq]=true&populate=*`
+    ),
     fetch(new URL("posts-meta.json", url)),
   ]);
 
   if (!projectsRes.ok || !postsRes.ok)
     throw new Error("Failed to fetch projects or posts");
 
-  const [projData, postsData] = await Promise.all([
-    projectsRes.json(),
-    postsRes.json(),
-  ]);
+  const posts: PostMeta[] = await postsRes.json();
 
-  const projects = projData.data.map((item) => ({
+  const json: StrapiResponse<StrapiProject> = await projectsRes.json();
+
+  const projects = json.data.map((item) => ({
     id: item.id,
     documentId: item.documentId,
     title: item.title,
@@ -45,11 +46,13 @@ export async function loader({
     featured: item.featured,
   }));
 
-  return { projects, posts: postsData };
+  return { projects, posts };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { projects, posts } = loaderData;
+
+  console.log(projects);
 
   return (
     <>
