@@ -32,3 +32,8 @@ export type FeaturedProjectsProps = {
   featuredProjects: Project[];
   count?: number;
 };
+
+export type PostsFilterProps = {
+  searchQuery: string;
+  onSearchChange: (searchQuery: string) => void;
+};
