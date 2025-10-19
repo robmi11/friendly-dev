@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import ReactMarkdown from "react-markdown";
 import type { Route } from "./+types/details";
 import type { PostMeta } from "~/types/types";
@@ -29,6 +29,7 @@ export async function loader({
 
 export default function BlogPostDetails({ loaderData }: Route.ComponentProps) {
   const { post, markdown } = loaderData;
+  const navigate = useNavigate();
   return (
     <div className="max-w-3xl mx-auto py-12 px-6 rounded bg-gray-900">
       <h1 className="text-3xl font-bold text-blue-400 mb-2">{post.title}</h1>
@@ -38,11 +39,11 @@ export default function BlogPostDetails({ loaderData }: Route.ComponentProps) {
       <div className="prose prose-invert max-w-none mb-12">
         <ReactMarkdown>{markdown}</ReactMarkdown>
       </div>
-      <Link
-        to="/blog"
+      <button
+        onClick={() => navigate(-1)}
         className="inline-block px-6 py-2 bg-blue-600 text-white hover:bg-blue-700 transition cursor-pointer rounded-lg">
-        &lt;- Back To Posts
-      </Link>
+        &lt;- Go Back
+      </button>
     </div>
   );
 }

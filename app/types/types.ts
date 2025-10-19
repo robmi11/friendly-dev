@@ -37,3 +37,8 @@ export type PostsFilterProps = {
   searchQuery: string;
   onSearchChange: (searchQuery: string) => void;
 };
+
+export type LatestProjectsProps = {
+  posts: PostMeta[];
+  limit?: number;
+};
