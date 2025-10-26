@@ -10,6 +10,7 @@ export default function Pagination({
     <div className="flex justify-center gap-2 mt-8">
       {Array.from({ length: totalPages }, (_, idx) => (
         <button
+          key={idx}
           className={`cursor-pointer px-3 py-1 rounded ${currentPage === idx + 1 ? "bg-blue-600 text-white" : "bg-gray-700 text-gray-200"} `}
           onClick={() => onPageChange(idx + 1)}>
           {idx + 1}

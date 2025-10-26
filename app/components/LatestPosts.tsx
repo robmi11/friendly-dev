@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import type { LatestProjectsProps, PostMeta } from "~/types/types";
+import type { LatestProjectsProps, Post } from "~/types/types";
 
 export default function LatestPosts({ posts, limit = 3 }: LatestProjectsProps) {
   const latestPost = [...posts]
-    .sort((a: PostMeta, b: PostMeta) => {
+    .sort((a: Post, b: Post) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     })
     .slice(0, limit);

@@ -10,12 +10,5 @@ export default defineConfig({
   server: {
     port: 3000,
     hmr: true,
-    proxy: {
-      "/api": {
-        target: "http://localhost:5000",
-        rewrite: (path) => path.replace(/^\/api/, ""),
-        changeOrigin: true
-      }
-    }
   }
 });

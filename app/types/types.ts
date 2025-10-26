@@ -10,12 +10,33 @@ export type Project = {
   featured: boolean;
 };
 
-export type PostMeta = {
+export type Post = {
   id: string;
+  body: string;
   slug: string;
   title: string;
   excerpt: string;
   date: string;
+  image: string;
+};
+
+export type StrapiPost = {
+  id: string;
+  documentId: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  image?: {
+    url: string;
+    formats?: {
+      thumbnail: { url: string; };
+      small: { url: string; };
+      medium: { url: string; };
+      large: { url: string; };
+    };
+  };
+  date: string;
+  body: string;
 };
 
 export type PaginationProps = {
@@ -40,7 +61,7 @@ export type PostsFilterProps = {
 };
 
 export type LatestProjectsProps = {
-  posts: PostMeta[];
+  posts: Post[];
   limit?: number;
 };
 
